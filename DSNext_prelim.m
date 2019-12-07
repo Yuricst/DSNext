@@ -1,6 +1,6 @@
 %% DSNext back of the envelope study
-% 
-% 
+% Version 01
+% Preliminary study, visualize situation
 % Yuri Shimane, listening to Goldberg Variation, 2019/12/07
 % ============================================================= %
 
@@ -34,7 +34,7 @@ Mars.v0 = [0; Mars.vp; 0];           % initial velocity vector [km]
 Rel01.e  = 0;
 Rel01.a  = 0.8*au2km;
 Rel01.h  = sqrt(Rel01.a*mu*(1-Rel01.e^2));
-Rel01.theta0 = 100;                          % INPUT PARAMETER
+Rel01.theta0 = 180;                          % INPUT PARAMETER
 Rel01.vp = sqrt(mu/Rel01.a);
 Rel01.P  = 2*pi*sqrt(Rel01.a^3/mu);  % orbital period [s]
 Rel01.r0 = Rel01.h^2/(mu*(1 + Rel01.e*cosd(Rel01.theta0)))*...
@@ -101,23 +101,23 @@ grid on; xlabel('x [AU]'); ylabel('[AU]')
 
 figure(12)
 subplot(2,1,1)
-plot(time,dr_EM/au2km,'--k')
+plot(time/86400,dr_EM/au2km,'--k')
 hold on
-plot(time,dr_Rel01M/au2km,'-.m')
+plot(time/86400,dr_Rel01M/au2km,'-.m')
 hold on
-plot(time,dr_Rel01E/au2km,'-.c')
+plot(time/86400,dr_Rel01E/au2km,'-.c')
 grid on;
-xlabel('time'); ylabel('Relative distancd [AU]')
+xlabel('time [days]'); ylabel('Relative distancd [AU]')
 legend('Mars-Earth','SC-Mars','SC-Earth')
 
 subplot(2,1,2)
-plot(time,Lfs_EM_dB,'--k')
+plot(time/86400,Lfs_EM_dB,'--k')
 hold on
-plot(time,Lfs_Rel01M_dB,'-.m')
+plot(time/86400,Lfs_Rel01M_dB,'-.m')
 hold on
-plot(time,Lfs_Rel01E_dB,'-.c')
+plot(time/86400,Lfs_Rel01E_dB,'-.c')
 grid on;
-xlabel('time'); ylabel('Free space loss [dB]')
+xlabel('time [days]'); ylabel('Free space loss [dB]')
 legend('Mars-Earth','SC-Mars','SC-Earth')
 
 
