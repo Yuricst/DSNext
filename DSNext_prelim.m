@@ -120,6 +120,7 @@ grid on;
 xlabel('time'); ylabel('Free space loss [dB]')
 legend('Mars-Earth','SC-Mars','SC-Earth')
 
+
 %% dynamic plot
 dynamicplot = input('Dynamic plot? [y/n]: ','s');
 if dynamicplot == 'y'
@@ -158,7 +159,24 @@ end
 end
 
 
+%% Comm. budget 
+% signal source (some Mars mission / architecture?)
 
+% antenna parameters (assume identical antenna for down/up link
+Rel01.antenna.diam = 3;  % antenna diameter
+Rel01.antenna.eta = 0.7; % antenna efficiency
+Rel01.antenna.gain = Rel01.antenna.eta*(pi*Rel01.antenna.diam/lambda)^2;
+Rel01.antenna.gain_dB = 10*log10(Rel01.antenna.gain);
+% downlink components
+Rel01.downlink.cable_loss_dB = 3;
+Rel01.downlink.LNA_gain_dB = 10;  % low-noise amplifier gain
+
+Rel01.downlink.dPower_dB = Rel01.antenna.gain_dB - Rel01.downlink.cable_loss_dB +...
+    Rel01.downlink.LNA_gain_dB;
+Rel01.downlink.dPower = 10^(Rel01.downlink.dPower_dB/10);
+
+% uplink components
+Rel01.uplink.dPin_dB = Rel01.downlink.dPower_dB;
 
 
 
