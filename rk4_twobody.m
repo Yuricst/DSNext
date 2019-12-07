@@ -6,7 +6,7 @@ function [rr,vv,time] = rk4_twobody(r0,v0,mu,dt,nsteps,a_thrust)
 %   mu : gravitatonal parameter [km^3/s^2]
 %   dt : time step size [s]
 %   nsteps : number of steps to integrate
-%   a_thrust : 3x1 constant acceleration vector
+%   a_thrust : 3x1 constant acceleration vector (e.g. thrust)
 % OUTPUT
 %   rr : 3 x nsteps propagated position [km]
 %   vv : 3 x nsteps propagated velocity [km/s]
